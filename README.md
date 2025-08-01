@@ -1,14 +1,63 @@
-# Project
+# A specification for MCP Policy Files
 
-> This repo has been populated by an initial template to help get you started. Please
-> make sure to update the content to build a great experience for community-building.
+## Policy Structure
 
-As the maintainer of this project, please make a few updates:
+Basic YAML format:
 
-- Improving this README.MD file to provide a great experience
-- Updating SUPPORT.MD with content about this project's support experience
-- Understanding the security reporting process in SECURITY.MD
-- Remove this section from the README
+```yaml
+version: "1.0"
+description: "My policy"
+permissions:
+  storage:
+    allow:
+    - uri: "fs://work/agent/**"
+      access: ["read", "write"]
+  network:
+    allow:
+    - host: "api.example.com"
+```
+
+### Storage Permissions
+
+```yaml
+storage:
+  allow:
+    - uri: "fs://work/agent/**"
+      access: ["read", "write"]
+    - uri: "fs://work/temp/*"
+      access: ["read"]
+```
+
+### Network Permissions
+
+```yaml
+network:
+  allow:
+    - host: "api.service.com"
+    - host: "*.internal.com"
+    - cidr: "10.0.0.0/8"
+```
+
+### Environment Variables
+
+```yaml
+environment:
+  allow:
+    - key: "PATH"
+    - key: "HOME"
+```
+
+### Docker Runtime
+
+```yaml
+runtime:
+  docker:
+    security:
+      privileged: false
+      capabilities:
+        drop: ["ALL"]
+        add: ["NET_BIND_SERVICE"]
+```
 
 ## Contributing
 
