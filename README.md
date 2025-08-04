@@ -7,6 +7,8 @@ This repository defines a specification for a policy format to be used by anothe
 - Environment Variables: Defining which environment variables are allowed to be accessed.
 - Docker Runtime Configuration: Specifying security-related settings for Docker containers, such as privilege levels and Linux capabilities.
 
+This repository does not include any third-party code
+
 ## Policy Structure
 
 Basic YAML format:
