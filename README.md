@@ -1,5 +1,12 @@
 # A specification for MCP Policy Files
 
+This repository defines a specification for a policy format to be used by another application to enforce permission controls on Model Context Protocol (MCP) servers. It is written in YAML format. The policies control various aspects of a runtime environment, including:
+
+- Storage Permissions: Controlling access (read, write) to specific file system URIs.
+- Network Permissions: Restricting network access to specific hosts, host patterns, or CIDR blocks.
+- Environment Variables: Defining which environment variables are allowed to be accessed.
+- Docker Runtime Configuration: Specifying security-related settings for Docker containers, such as privilege levels and Linux capabilities.
+
 ## Policy Structure
 
 Basic YAML format:
