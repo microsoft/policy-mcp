@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/microsoft/policy-mcp/main/schema/v1.json
+
+version: "1.0"
+description: "Policy demonstrating use of default HTTP domains"
+permissions:
+  network:
+    allow:
+    - defaults: "common-http"
+    - host: "internal.company.com"
+    - host: "*.private.local"

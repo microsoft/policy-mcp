@@ -47,6 +47,31 @@ network:
     - cidr: "10.0.0.0/8"
 ```
 
+#### Using Default HTTP Domains
+
+You can use predefined sets of commonly needed HTTP domains using the `defaults` keyword:
+
+```yaml
+network:
+  allow:
+    - defaults: "common-http"
+    - host: "internal.mycompany.com"
+```
+
+The `common-http` defaults include commonly accessed domains for:
+- **Package Registries**: npm, PyPI, RubyGems, Crates.io, NuGet, Maven
+- **Version Control**: GitHub, GitLab, Bitbucket
+- **Cloud Services**: AWS, Google Cloud, Azure, Cloudflare
+- **Container Registries**: Docker Hub, Quay, GitHub Container Registry, Google Container Registry
+- **AI/ML APIs**: OpenAI, Anthropic, Cohere
+- **CDNs**: jsDelivr, UNPKG, Cloudflare CDN, Fastly
+- **Documentation**: docs.rs, Read the Docs
+- **CI/CD**: CircleCI, Travis CI
+
+For a complete list of included domains, see [DEFAULTS.md](DEFAULTS.md).
+
+This provides a secure baseline for common development and API access scenarios while still allowing you to add specific hosts as needed.
+
 ### Environment Variables
 
 ```yaml
