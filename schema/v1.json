@@ -99,6 +99,18 @@
       },
       "additionalProperties": false
     },
+    "NetworkDefaultsPermission": {
+      "type": "object",
+      "required": ["defaults"],
+      "properties": {
+        "defaults": {
+          "type": "boolean",
+          "const": true,
+          "description": "Use the predefined set of common HTTP domains. This includes package registries, common APIs, and development services."
+        }
+      },
+      "additionalProperties": false
+    },
     "NetworkPermission": {
       "oneOf": [
         {
@@ -106,6 +118,9 @@
         },
         {
           "$ref": "#/$defs/NetworkCidrPermission"
+        },
+        {
+          "$ref": "#/$defs/NetworkDefaultsPermission"
         }
       ]
     },
