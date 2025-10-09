@@ -27,6 +27,7 @@ The `defaults` keyword includes a commonly needed set of HTTP domains for typica
 - `repo1.maven.org` - Maven Central mirror
 - `central.maven.org` - Maven Central
 - `search.maven.org` - Maven search
+- `registry.yarnpkg.com` - Yarn package registry
 
 #### Version Control Systems
 - `github.com` - GitHub
@@ -72,6 +73,9 @@ The `defaults` keyword includes a commonly needed set of HTTP domains for typica
 - `*.anthropic.com` - Anthropic services
 - `api.cohere.ai` - Cohere API
 - `*.cohere.ai` - Cohere services
+- `huggingface.co` - Hugging Face
+- `*.huggingface.co` - Hugging Face services
+- `cdn-lfs.huggingface.co` - Hugging Face LFS
 
 **Note**: This list focuses on the most commonly used AI/ML APIs in MCP server contexts. Additional providers may be included based on demonstrated usage patterns and community feedback.
 
@@ -94,9 +98,8 @@ The `defaults` keyword includes a commonly needed set of HTTP domains for typica
 #### Build and CI/CD Services
 - `circleci.com` - CircleCI
 - `*.circleci.com` - CircleCI services
-- `travis-ci.org` - Travis CI
-- `*.travis-ci.org` - Travis CI services
-- `*.travis-ci.com` - Travis CI services
+- `actions.githubusercontent.com` - GitHub Actions
+- `objects.githubusercontent.com` - GitHub Actions artifacts
 
 ## Usage
 
@@ -132,7 +135,7 @@ Deny rules take precedence, so you can block specific domains even if they're in
 
 ### Domain Vetting Criteria
 
-Domains are included in the `common-http` defaults only if they meet all of the following criteria:
+Domains are included in the defaults only if they meet all of the following criteria:
 
 1. **Reputation**: Well-established services with a proven track record
 2. **Security Practices**: Organizations with documented security practices and incident response
