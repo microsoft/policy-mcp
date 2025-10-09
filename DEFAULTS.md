@@ -73,6 +73,8 @@ The `common-http` default set includes commonly needed HTTP domains for typical 
 - `api.cohere.ai` - Cohere API
 - `*.cohere.ai` - Cohere services
 
+**Note**: This list focuses on the most commonly used AI/ML APIs in MCP server contexts. Additional providers may be included based on demonstrated usage patterns and community feedback.
+
 #### Content Delivery Networks (CDNs)
 - `cdn.jsdelivr.net` - jsDelivr CDN
 - `*.jsdelivr.net` - jsDelivr services
@@ -128,8 +130,21 @@ Deny rules take precedence, so you can block specific domains even if they're in
 
 ## Security Considerations
 
+### Domain Vetting Criteria
+
+Domains are included in the `common-http` defaults only if they meet all of the following criteria:
+
+1. **Reputation**: Well-established services with a proven track record
+2. **Security Practices**: Organizations with documented security practices and incident response
+3. **Usage Frequency**: Commonly needed in typical MCP server development and deployment scenarios
+4. **Trust**: Services operated by reputable organizations (established companies, foundations, or communities)
+5. **Purpose**: Serve a clear, legitimate development or operational need
+
+### Best Practices
+
 - The `common-http` set is designed to be broadly useful while maintaining security
 - All domains are well-known, reputable services
 - Wildcards are used sparingly and only for trusted organizations with multiple subdomains
 - Consider using deny rules to block specific subdomains if needed
 - For production environments with stricter requirements, specify explicit domains instead of using defaults
+- Review the complete domain list periodically to ensure it aligns with your security policies

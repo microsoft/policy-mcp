@@ -21,6 +21,7 @@ permissions:
     - cidr: "192.168.1.0/24"
     deny:
     # Block specific domains even if they're in defaults
+    # Example: Block tracking/analytics services that may be included in CDN wildcards
     - host: "*.doubleclick.net"
     - host: "*.facebook.com"
       
