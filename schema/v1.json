@@ -104,9 +104,9 @@
       "required": ["defaults"],
       "properties": {
         "defaults": {
-          "type": "string",
-          "enum": ["common-http"],
-          "description": "Use a predefined set of default HTTP domains. 'common-http' includes package registries, common APIs, and development services. Future values may include domain sets for specific use cases (e.g., 'minimal', 'enterprise'). New default sets should only be added for widely applicable scenarios with well-known, reputable domains."
+          "type": "boolean",
+          "const": true,
+          "description": "Use the predefined set of common HTTP domains. This includes package registries, common APIs, and development services."
         }
       },
       "additionalProperties": false

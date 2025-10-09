@@ -5,6 +5,6 @@ description: "Policy demonstrating use of default HTTP domains"
 permissions:
   network:
     allow:
-    - defaults: "common-http"
+    - defaults: true
     - host: "internal.company.com"
     - host: "*.private.local"

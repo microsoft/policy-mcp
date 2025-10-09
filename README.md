@@ -49,16 +49,16 @@ network:
 
 #### Using Default HTTP Domains
 
-You can use predefined sets of commonly needed HTTP domains using the `defaults` keyword:
+You can use a predefined set of commonly needed HTTP domains using the `defaults` keyword:
 
 ```yaml
 network:
   allow:
-    - defaults: "common-http"
+    - defaults: true
     - host: "internal.mycompany.com"
 ```
 
-The `common-http` defaults include commonly accessed domains for:
+The defaults include commonly accessed domains for:
 - **Package Registries**: npm, PyPI, RubyGems, Crates.io, NuGet, Maven
 - **Version Control**: GitHub, GitLab, Bitbucket
 - **Cloud Services**: AWS, Google Cloud, Azure, Cloudflare

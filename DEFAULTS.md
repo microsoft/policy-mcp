@@ -1,10 +1,10 @@
-# Default HTTP Domain Sets
+# Default HTTP Domains
 
-This document defines the default HTTP domain sets available in MCP Policy files.
+This document defines the default HTTP domains available in MCP Policy files.
 
-## `common-http`
+## Overview
 
-The `common-http` default set includes commonly needed HTTP domains for typical development and API access scenarios. This provides a secure baseline that covers most common use cases while allowing administrators to add specific additional domains as needed.
+The `defaults` keyword includes a commonly needed set of HTTP domains for typical development and API access scenarios. This provides a secure baseline that covers most common use cases while allowing administrators to add specific additional domains as needed.
 
 ### Included Domains
 
@@ -100,7 +100,7 @@ The `common-http` default set includes commonly needed HTTP domains for typical 
 
 ## Usage
 
-To use a default set in your policy file:
+To use the default domains in your policy file:
 
 ```yaml
 version: "1.0"
@@ -108,25 +108,25 @@ description: "Policy with default HTTP domains"
 permissions:
   network:
     allow:
-    - defaults: "common-http"
+    - defaults: true
     - host: "internal.mycompany.com"
 ```
 
 ## Combining with Other Rules
 
-Default domain sets can be combined with explicit host and CIDR rules:
+The default domains can be combined with explicit host and CIDR rules:
 
 ```yaml
 network:
   allow:
-  - defaults: "common-http"
+  - defaults: true
   - host: "*.company.internal"
   - cidr: "10.0.0.0/8"
   deny:
   - host: "blocked.example.com"
 ```
 
-Deny rules take precedence, so you can block specific domains even if they're included in a default set.
+Deny rules take precedence, so you can block specific domains even if they're included in the defaults.
 
 ## Security Considerations
 
@@ -142,7 +142,7 @@ Domains are included in the `common-http` defaults only if they meet all of the 
 
 ### Best Practices
 
-- The `common-http` set is designed to be broadly useful while maintaining security
+- The default domain set is designed to be broadly useful while maintaining security
 - All domains are well-known, reputable services
 - Wildcards are used sparingly and only for trusted organizations with multiple subdomains
 - Consider using deny rules to block specific subdomains if needed

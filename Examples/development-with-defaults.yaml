@@ -13,7 +13,7 @@ permissions:
   network:
     allow:
     # Use common HTTP domains for package registries, APIs, etc.
-    - defaults: "common-http"
+    - defaults: true
     # Add organization-specific domains
     - host: "*.company.internal"
     - host: "jenkins.company.com"
