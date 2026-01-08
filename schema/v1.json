@@ -197,7 +197,7 @@
       "properties": {
         "host_path": {
           "type": "string",
-          "description": "Host filesystem URI or path to preopen for the WASI module"
+          "description": "Host filesystem location to preopen for the WASI module (e.g. fs://workspace/data or an absolute path like /var/data)"
         },
         "guest_path": {
           "type": "string",
@@ -210,7 +210,7 @@
           },
           "minItems": 1,
           "uniqueItems": true,
-          "description": "Access modes the module receives for the preopened path"
+          "description": "Access modes (read/write) granted to the module for the preopened path"
         }
       },
       "additionalProperties": false
