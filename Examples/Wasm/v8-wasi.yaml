@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/microsoft/policy-mcp/main/schema/v1.json
 
 version: "1.0"
-description: "Locked-down WASI policy using the V8 WebAssembly runtime"
+description: "Locked-down WASI policy using the V8 WebAssembly runtime (experimental runtime schema)"
 permissions:
   storage:
     allow:

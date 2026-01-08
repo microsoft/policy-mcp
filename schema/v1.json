@@ -246,7 +246,7 @@
         "engine": {
           "type": "string",
           "enum": ["v8", "wasmtime"],
-          "description": "Selected WASM runtime engine"
+          "description": "Selected WASM runtime engine (experimental; subject to specification stabilization)"
         },
         "module": {
           "type": "string",
@@ -254,7 +254,7 @@
         },
         "wasi": {
           "$ref": "#/$defs/WasiConfig",
-          "description": "WASI configuration for the module"
+          "description": "WASI configuration for the module (experimental)"
         }
       },
       "additionalProperties": false
