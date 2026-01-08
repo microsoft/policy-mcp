@@ -1,6 +1,6 @@
 # A specification for MCP Policy Files
 
-This repository defines a specification for a policy format to be used by another application to enforce permission controls on Model Context Protocol (MCP) servers. It is written in YAML format. The policies control various aspects of a runtime environment, including:
+This repository defines a specification for a policy format to be used by another application to enforce permission controls on Model Context Protocol (MCP) servers. In sandboxing terms, a policy is the authoritative contract the runtime enforces to define which resources and capabilities the MCP server may access. It is written in YAML format. The policies control various aspects of a runtime environment, including:
 
 - Storage Permissions: Controlling access (read, write) to specific file system URIs.
 - Network Permissions: Restricting network access to specific hosts, host patterns, or CIDR blocks.
