@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/microsoft/policy-mcp/main/schema/v1.json
 
 version: "1.0"
-description: "WASI policy for the Wasmtime runtime with limited outbound access; cache path is both permitted and preopened for read/write use"
+description: "WASI policy for the Wasmtime runtime with selective outbound access; cache path is both permitted and preopened for read/write use"
 permissions:
   storage:
     allow:
