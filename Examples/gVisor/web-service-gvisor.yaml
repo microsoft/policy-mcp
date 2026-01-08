@@ -1,0 +1,31 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/microsoft/policy-mcp/main/schema/v1.json
+
+version: "1.0"
+description: "gVisor-sandboxed web service with minimal host access"
+permissions:
+  storage:
+    allow:
+    - uri: "fs://work/agent/config/**"
+      access: ["read"]
+    - uri: "fs://work/agent/logs/**"
+      access: ["read", "write"]
+  network:
+    allow:
+    - defaults: true
+    - host: "api.openai.com"
+  environment:
+    allow:
+    - key: "PATH"
+    - key: "PORT"
+  runtime:
+    docker:
+      security:
+        privileged: false
+        no_new_privileges: true
+        capabilities:
+          drop: ["ALL"]
+          add: ["NET_BIND_SERVICE"]
+  resources:
+    cpu: 75
+    memory: 1024
+# Launch the container with --runtime=runsc (or an equivalent gVisor runtime class) to ensure syscall sandboxing.
