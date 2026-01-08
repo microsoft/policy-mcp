@@ -11,21 +11,22 @@ permissions:
       access: ["read", "write"]
   network:
     allow:
+    # defaults: true allows the built-in HTTP egress list.
+    # See DEFAULTS.md for the full domain list.
     - defaults: true
-    - host: "api.openai.com"
   environment:
     allow:
     - key: "PATH"
     - key: "PORT"
   runtime:
+    # Run containers with --runtime=runsc (gVisor) to enable syscall sandboxing.
     docker:
       security:
         privileged: false
         no_new_privileges: true
         capabilities:
           drop: ["ALL"]
-          add: ["NET_BIND_SERVICE"]
+          add: ["NET_BIND_SERVICE"] # needed for binding to ports below 1024 (e.g., 80/443)
   resources:
-    cpu: 75
-    memory: 1024
-# Launch the container with --runtime=runsc (or an equivalent gVisor runtime class) to ensure syscall sandboxing.
+    cpu: 75.0 # 75% of a single vCPU core (0-100)
+    memory: 1024 # MB

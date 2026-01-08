@@ -5,21 +5,20 @@ description: "Restrictive gVisor sandbox policy using runsc runtime"
 permissions:
   storage:
     allow:
-      - uri: "fs://work/agent/**"
-        access: ["read", "write"]
+    - uri: "fs://work/agent/**"
+      access: ["read", "write"]
   network:
     allow:
-      - host: "api.openai.com"
+    - host: "api.openai.com"
   environment:
     allow:
-      - key: "PATH"
-      - key: "HOME"
+    - key: "PATH"
+    - key: "HOME"
   runtime:
+    # Run containers with --runtime=runsc (gVisor) to enforce syscall sandboxing.
     docker:
       security:
         privileged: false
         no_new_privileges: true
         capabilities:
           drop: ["ALL"]
-          add: ["NET_BIND_SERVICE"]
-# To run this policy with gVisor, start Docker containers with --runtime=runsc (or set runsc as the default runtime).
