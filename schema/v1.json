@@ -191,6 +191,74 @@
       "description": "Hyperlight runtime configuration (future/TODO)",
       "additionalProperties": true
     },
+    "WasiPreopen": {
+      "type": "object",
+      "required": ["host_path", "guest_path", "access"],
+      "properties": {
+        "host_path": {
+          "type": "string",
+          "description": "Host filesystem URI or path to preopen for the WASI module"
+        },
+        "guest_path": {
+          "type": "string",
+          "description": "Guest mount point exposed inside the WASI module"
+        },
+        "access": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/AccessType"
+          },
+          "minItems": 1,
+          "uniqueItems": true,
+          "description": "Access modes the module receives for the preopened path"
+        }
+      },
+      "additionalProperties": false
+    },
+    "WasiConfig": {
+      "type": "object",
+      "properties": {
+        "inherit_env": {
+          "type": "boolean",
+          "description": "Expose the parent environment variables to the WASI module"
+        },
+        "args": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Command-line arguments passed to the module entrypoint"
+        },
+        "preopens": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/WasiPreopen"
+          },
+          "description": "Directories preopened for the WASI module"
+        }
+      },
+      "additionalProperties": false
+    },
+    "WasmRuntime": {
+      "type": "object",
+      "required": ["engine"],
+      "properties": {
+        "engine": {
+          "type": "string",
+          "enum": ["v8", "wasmtime"],
+          "description": "Selected WASM runtime engine"
+        },
+        "module": {
+          "type": "string",
+          "description": "URI to the default WebAssembly module"
+        },
+        "wasi": {
+          "$ref": "#/$defs/WasiConfig",
+          "description": "WASI configuration for the module"
+        }
+      },
+      "additionalProperties": false
+    },
     "Runtime": {
       "type": "object",
       "properties": {
@@ -198,6 +266,16 @@
           "oneOf": [
             {
               "$ref": "#/$defs/DockerRuntime"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "wasm": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/WasmRuntime"
             },
             {
               "type": "null"
