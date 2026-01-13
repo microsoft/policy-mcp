@@ -1,0 +1,37 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/microsoft/policy-mcp/main/schema/v1.json
+
+version: "1.0"
+description: "WASI policy for the Wasmtime runtime with selective outbound access; cache path is both permitted and preopened for read/write use (experimental runtime schema)"
+permissions:
+  storage:
+    allow:
+    - uri: "fs://workspace/wasm/wasmtime/modules/**"
+      access: ["read"]
+    - uri: "fs://workspace/wasm/wasmtime/cache/**"
+      access: ["read", "write"]
+  network:
+    allow:
+    - host: "api.internal.example"
+    deny:
+    - cidr: "0.0.0.0/0"
+  environment:
+    allow:
+    - key: "APP_ENV"
+    - key: "SERVICE_TOKEN"
+  runtime:
+    wasm:
+      engine: "wasmtime"
+      module: "fs://workspace/wasm/wasmtime/modules/service.wasm"
+      wasi:
+        inherit_env: true
+        args: ["serve", "--http-port", "8080"]
+        preopens:
+        - host_path: "fs://workspace/wasm/wasmtime/config"
+          guest_path: "/config"
+          access: ["read"]
+        - host_path: "fs://workspace/wasm/wasmtime/cache"
+          guest_path: "/cache"
+          access: ["read", "write"]
+  resources:
+    cpu: 50.0
+    memory: 512

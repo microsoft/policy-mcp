@@ -1,0 +1,34 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/microsoft/policy-mcp/main/schema/v1.json
+
+version: "1.0"
+description: "Locked-down WASI policy using the V8 WebAssembly runtime (experimental runtime schema)"
+permissions:
+  storage:
+    allow:
+    - uri: "fs://workspace/wasm/v8/modules/**"
+      access: ["read"]
+    - uri: "fs://workspace/wasm/v8/tmp/**"
+      access: ["read", "write"]
+  network:
+    deny:
+    - cidr: "0.0.0.0/0"
+  environment:
+    allow:
+    - key: "RUST_LOG"
+  runtime:
+    wasm:
+      engine: "v8"
+      module: "fs://workspace/wasm/v8/modules/tooling.wasm"
+      wasi:
+        inherit_env: false
+        args: ["--config", "/data/config.json"]
+        preopens:
+        - host_path: "fs://workspace/wasm/v8/data"
+          guest_path: "/data"
+          access: ["read"]
+        - host_path: "fs://workspace/wasm/v8/tmp"
+          guest_path: "/tmp"
+          access: ["read", "write"]
+  resources:
+    cpu: 35.0
+    memory: 256
