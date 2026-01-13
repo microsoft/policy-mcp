@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/microsoft/policy-mcp/main/schema/v1.json
+
+version: "1.0"
+description: "Restrictive gVisor sandbox policy using runsc runtime"
+permissions:
+  storage:
+    allow:
+    - uri: "fs://work/agent/**"
+      access: ["read", "write"]
+  network:
+    allow:
+    - host: "api.openai.com"
+  environment:
+    allow:
+    - key: "PATH"
+    - key: "HOME"
+  runtime:
+    # Run containers with --runtime=runsc (gVisor) to enforce syscall sandboxing.
+    docker:
+      security:
+        privileged: false
+        no_new_privileges: true
+        capabilities:
+          drop: ["ALL"]
